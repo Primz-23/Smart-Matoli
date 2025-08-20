@@ -1,0 +1,181 @@
+<!DOCTYPE html> <html lang="en" class="scroll-smooth"> <head> <meta charset="UTF-8" /> <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <title>Smart Matoli • Tradition × Tech</title> <meta name="description" content="Interactive Smart Matoli website: why we hang fruits, sacred meanings, real photos, Ganesh history timeline, and a video." /> <!-- Fonts --> <link rel="preconnect" href="https://fonts.googleapis.com"> <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"> <!-- Tailwind (CDN) --> <script src="https://cdn.tailwindcss.com"></script> <script> tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter','system-ui','ui-sans-serif','Segoe UI','Roboto'], display: ['Playfair Display','serif'] }, colors: { saffron: { 50:'#fff7e6',100:'#ffeab8',200:'#ffd780',300:'#ffc04d',400:'#ffa726',500:'#ff9500',600:'#db7f00',700:'#b36800',800:'#8f5300',900:'#733f00' }, turmeric: { 50:'#fffbe6',100:'#fff3b0',200:'#ffe66d',300:'#ffd426',400:'#ffc107',500:'#ffb300',600:'#d99400',700:'#b37700',800:'#8c5c00',900:'#714900' } }, boxShadow: { soft:'0 10px 30px rgba(0,0,0,.15)', glow:'0 0 0 6px rgba(255,193,7,.25)' }, keyframes: { float:{'0%,100%':{transform:'translateY(0)'},'50%':{transform:'translateY(-10px)'}} }, animation: { float:'float 6s ease-in-out infinite' } } } } </script> <!-- GSAP + ScrollTrigger --> <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" crossorigin="anonymous"></script> <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" crossorigin="anonymous"></script> <!-- Lenis smooth scroll --> <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.44/bundled/lenis.min.js"></script> <!-- GLightbox --> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" /> <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script> <style> :root{ --bg1:#ffec99; --bg2:#ffb84d; } body{ background: radial-gradient(1000px 600px at 20% -10%, var(--bg1), transparent), linear-gradient(135deg, #ffe082, #ffcc4d, #ffad33); } .glass{ background: rgba(255,255,255,.35); backdrop-filter: blur(12px); } .scrollbar{ position:fixed; top:0; left:0; height:4px; width:0; background:linear-gradient(90deg,#ffd426,#ff9500); z-index:9999; box-shadow:0 2px 8px rgba(0,0,0,.2); } .cursor-blob{ position:fixed; width:220px; height:220px; border-radius:50%; pointer-events:none; mix-blend-mode:multiply; filter:blur(40px); background: radial-gradient(circle at 30% 30%, rgba(255,212,38,.6), rgba(255,149,0,.45)); transform:translate(-50%,-50%); opacity:.6; z-index:0;} </style> </head> <body class="font-sans text-neutral-800 selection:bg-yellow-200 selection:text-neutral-900"> <div class="scrollbar" id="scrollbar"></div> <div class="cursor-blob hidden md:block" id="blob"></div> <!-- NAV --> <header class="fixed top-0 inset-x-0 z-50"> <div class="max-w-7xl mx-auto px-4"> <nav class="mt-4 glass rounded-2xl px-4 py-2 shadow-soft flex items-center justify-between"> <a href="#" class="flex items-center gap-3"><span class="text-2xl">🪔</span><span class="font-display text-xl">Smart Matoli</span></a> <div class="hidden md:flex items-center gap-1"> <a href="#why" class="px-3 py-2 rounded-xl hover:bg-white/60 transition">Why Fruits?</a> <a href="#fruits" class="px-3 py-2 rounded-xl hover:bg-white/60 transition">Sacred Meanings</a> <a href="#history" class="px-3 py-2 rounded-xl hover:bg-white/60 transition">Ganesh History</a> <a href="#gallery" class="px-3 py-2 rounded-xl hover:bg-white/60 transition">Gallery</a> <a href="#video" class="px-3 py-2 rounded-xl hover:bg-white/60 transition">Video</a> </div> <a href="#quiz" class="hidden sm:inline-flex rounded-xl bg-saffron-500 hover:bg-saffron-600 text-white px-4 py-2 shadow-soft">Quick Quiz ➜</a> </nav> </div> </header> <!-- HERO --> <section class="min-h-[92vh] flex items-center pt-28 relative overflow-hidden"> <div class="absolute -top-24 -right-24 w-[52vw] h-[52vw] rounded-full blur-3xl opacity-40 bg-gradient-to-br from-turmeric-300 to-saffron-400"></div> <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center"> <div> <h1 class="font-display text-4xl md:text-6xl leading-tight">Tradition × Tech<br><span class="bg-gradient-to-r from-turmeric-500 to-saffron-600 bg-clip-text text-transparent">Smart Matoli</span></h1> <p class="mt-5 text-lg md:text-xl text-neutral-700 max-w-prose">Experience the essence of <b>Goan Matoli</b> with an interactive, animated journey — learn <i>why</i> fruits are hung, explore the <i>sacred meanings</i>, see <i>real photos</i>, and dive into a <i>Ganesh history timeline</i>.</p> <div class="mt-8 flex flex-wrap gap-3"> <a href="#why" class="rounded-2xl bg-neutral-950 text-white px-6 py-3 shadow-soft hover:shadow-glow transition">Start Exploring</a> <a href="#fruits" class="rounded-2xl border border-neutral-300/70 px-6 py-3 hover:bg-white/70 transition">View Fruits</a> </div> <div class="mt-6 flex items-center gap-4 text-sm text-neutral-700"> <div class="inline-flex items-center gap-2"><span>⚡</span><span>Smooth scroll</span></div> <div class="inline-flex items-center gap-2"><span>🎞️</span><span>Parallax & reveals</span></div> <div class="inline-flex items-center gap-2"><span>🖼️</span><span>Lightbox gallery</span></div> </div> </div> <div class="relative h-[420px] md:h-[520px]"> <!-- Real fruit photos (Unsplash) --> <img data-parallax src="https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1200&auto=format&fit=crop" alt="Bananas" class="absolute right-8 top-6 w-48 md:w-64 rounded-2xl shadow-soft rotate-3"/> <img data-parallax src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/BigBead/coconut_bigbead/1800x1200_getty_rf_coconut_bigbead.jpg" alt="Coconut" class="absolute left-4 top-32 w-44 md:w-56 rounded-2xl shadow-soft -rotate-2"/> <img data-parallax src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?q=80&w=1200&auto=format&fit=crop" alt="Grapes" class="absolute right-12 bottom-6 w-44 md:w-56 rounded-2xl shadow-soft rotate-2"/> <img data-parallax src="https://images.unsplash.com/photo-1590502593747-42a996133562?q=80&w=1200&auto=format&fit=crop" alt="Lemon" class="absolute left-8 bottom-10 w-40 md:w-52 rounded-2xl shadow-soft -rotate-3"/> </div> </div> </section> <!-- WHY FRUITS --> <section id="why" class="py-20 md:py-28"> <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-5 gap-10 items-start"> <div class="md:col-span-2"> <h2 class="font-display text-3xl md:text-5xl">Why do we hang fruits in a Matoli?</h2> <p class="mt-4 text-neutral-700">Matoli, a hallmark of <b>Goan Ganesh Chaturthi</b>, is a canopy decorated with fruits, vegetables, herbs, and forest offerings. It celebrates <b>abundance</b>, expresses <b>gratitude to nature</b>, and symbolizes <b>harmony</b> between people and the environment.</p> <div class="mt-6 p-6 rounded-2xl glass border border-white/40"> <ul class="space-y-3"> <li>🌿 <b>Ecology:</b> honoring native crops & wild produce</li> <li>🪔 <b>Spirituality:</b> purity, auspiciousness, and devotion</li> <li>👨‍👩‍👧‍👦 <b>Community:</b> families gather to source and decorate</li> <li>📚 <b>Learning:</b> kids discover local biodiversity</li> </ul> </div> </div> <div class="md:col-span-3 grid sm:grid-cols-2 gap-6"> <div class="p-6 rounded-2xl glass border border-white/30 shadow-soft" data-reveal> <h3 class="text-xl font-semibold">Coconut 🥥</h3> <p class="mt-2 text-neutral-700">Symbol of purity & selfless offering; breaking it represents breaking the ego.</p> </div> <div class="p-6 rounded-2xl glass border border-white/30 shadow-soft" data-reveal> <h3 class="text-xl font-semibold">Banana 🍌</h3> <p class="mt-2 text-neutral-700">Prosperity & fertility; the whole plant is considered sacred.</p> </div> <div class="p-6 rounded-2xl glass border border-white/30 shadow-soft" data-reveal> <h3 class="text-xl font-semibold">Grapes 🍇</h3> <p class="mt-2 text-neutral-700">Bunches reflect unity and abundance; sweetness of collective effort.</p> </div> <div class="p-6 rounded-2xl glass border border-white/30 shadow-soft" data-reveal> <h3 class="text-xl font-semibold">Lemon 🍋</h3> <p class="mt-2 text-neutral-700">Wards off negativity and invites freshness & clarity.</p> </div> </div> </div> </section> <!-- FRUITS GRID (real photos + lightbox) --> <section id="fruits" class="py-20 md:py-28 bg-white/60"> <div class="max-w-7xl mx-auto px-6"> <div class="flex items-end justify-between gap-6 flex-wrap"> <div> <h2 class="font-display text-3xl md:text-5xl">Sacred Meanings</h2> <p class="mt-2 text-neutral-700">Tap any card to view a high‑res photo and details.</p> </div> <div class="text-sm text-neutral-600">Real photos • Lightbox • Hover effects</div> </div> <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"> <a href="https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1600&auto=format&fit=crop" class="glightbox group block rounded-3xl overflow-hidden relative shadow-soft" data-gallery="matoli" data-title="Banana — Prosperity & Fertility" data-description="Banana plants symbolize continuity and good fortune; offered for auspicious beginnings."> <img src="https://images.unsplash.com/photo-1603833665858-e61d17a86224?q=80&w=1200&auto=format&fit=crop" alt="Banana" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110"/> <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div> <div class="absolute bottom-0 p-5 text-white"><div class="text-xl font-semibold">Banana</div><div class="text-sm opacity-90">Prosperity • Fertility</div></div> </a> <a href="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/BigBead/coconut_bigbead/1800x1200_getty_rf_coconut_bigbead.jpg" class="glightbox group block rounded-3xl overflow-hidden relative shadow-soft" data-gallery="matoli" data-title="Coconut — Purity & Surrender" data-description="Breaking the coconut represents breaking the ego; water signifies inner purity."> <img src="https://img.lb.wbmdstatic.com/vim/live/webmd/consumer_assets/site_images/article_thumbnails/BigBead/coconut_bigbead/1800x1200_getty_rf_coconut_bigbead.jpg" alt="Coconut" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110"/> <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div> <div class="absolute bottom-0 p-5 text-white"><div class="text-xl font-semibold">Coconut</div><div class="text-sm opacity-90">Purity • Surrender</div></div> </a> <a href="https://images.unsplash.com/photo-1537640538966-79f369143f8f?q=80&w=1600&auto=format&fit=crop" class="glightbox group block rounded-3xl overflow-hidden relative shadow-soft" data-gallery="matoli" data-title="Grapes — Unity & Abundance" data-description="A bunch of grapes reflects togetherness and the sweetness of collective effort."> <img src="https://images.unsplash.com/photo-1537640538966-79f369143f8f?q=80&w=1200&auto=format&fit=crop" alt="Grapes" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110"/> <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div> <div class="absolute bottom-0 p-5 text-white"><div class="text-xl font-semibold">Grapes</div><div class="text-sm opacity-90">Unity • Abundance</div></div> </a> <a href="https://images.unsplash.com/photo-1590502593747-42a996133562?q=80&w=1600&auto=format&fit=crop" class="glightbox group block rounded-3xl overflow-hidden relative shadow-soft" data-gallery="matoli" data-title="Lemon — Protection & Clarity" data-description="Used to remove negativity and invite freshness, clarity, and balance."> <img src="https://images.unsplash.com/photo-1590502593747-42a996133562?q=80&w=1200&auto=format&fit=crop" alt="Lemon" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110"/> <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div> <div class="absolute bottom-0 p-5 text-white"><div class="text-xl font-semibold">Lemon</div><div class="text-sm opacity-90">Protection • Clarity</div></div> </a> <a href="attached_assets/Betel_leafs_Selling_1755665793940.jfif" class="glightbox group block rounded-3xl overflow-hidden relative shadow-soft" data-gallery="matoli" data-title="Betel Leaves — Auspiciousness" data-description="Paan leaves symbolize freshness, respect, and are offered for auspicious beginnings."> <img src="attached_assets/Betel_leafs_Selling_1755665793940.jfif" alt="Betel leaves" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110"/> <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div> <div class="absolute bottom-0 p-5 text-white"><div class="text-xl font-semibold">Betel Leaves</div><div class="text-sm opacity-90">Auspiciousness</div></div> </a> <a href="attached_assets/Pomegranate-background_1755665793939.jpg" class="glightbox group block rounded-3xl overflow-hidden relative shadow-soft" data-gallery="matoli" data-title="Pomegranate — Vitality & Fertility" data-description="Many seeds = prosperity, creativity, and life force."> <img src="attached_assets/Pomegranate-background_1755665793939.jpg" alt="Pomegranate" class="w-full h-64 object-cover transition duration-700 group-hover:scale-110"/> <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div> <div class="absolute bottom-0 p-5 text-white"><div class="text-xl font-semibold">Pomegranate</div><div class="text-sm opacity-90">Vitality • Fertility</div></div> </a> </div> </div> </section> <!-- GALLERY STRIP --> <section id="gallery" class="py-16"> <div class="max-w-7xl mx-auto px-6"> <div class="font-display text-2xl md:text-4xl">Matoli Aesthetic Gallery</div> <div class="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3"> <!-- Ganesh and Matoli Images --> <a href="attached_assets/%23wallpapercollage%20%23collageart%20%23ganesha%20%23ganesh_1755665114591.jfif" class="glightbox block overflow-hidden rounded-2xl"><img class="transition hover:scale-110" src="attached_assets/%23wallpapercollage%20%23collageart%20%23ganesha%20%23ganesh_1755665114591.jfif" alt="Ganesh Collage Art"/></a> <a href="attached_assets/95c0886e-9e1b-4a65-af4f-89ad8069314b_1755666019237.jfif" class="glightbox block overflow-hidden rounded-2xl"><img class="transition hover:scale-110" src="attached_assets/95c0886e-9e1b-4a65-af4f-89ad8069314b_1755666019237.jfif" alt="Matoli Decoration"/></a> <a href="attached_assets/download (2)_1755665114592.jfif" class="glightbox block overflow-hidden rounded-2xl"><img class="transition hover:scale-110" src="attached_assets/download (2)_1755665114592.jfif" alt="Traditional Matoli"/></a> <a href="attached_assets/db94c82b-3d30-4440-9bd7-d728f7b4c942_1755665114593.jfif" class="glightbox block overflow-hidden rounded-2xl"><img class="transition hover:scale-110" src="attached_assets/db94c82b-3d30-4440-9bd7-d728f7b4c942_1755665114593.jfif" alt="Ganesh Festival Decoration"/></a> </div> </div> </section> <!-- GANESH HISTORY TIMELINE --> <section id="history" class="py-20 md:py-28 bg-gradient-to-b from-white/60 to-transparent"> <div class="max-w-7xl mx-auto px-6"> <h2 class="font-display text-3xl md:text-5xl">Ganesh: Origins & Significance</h2> <p class="mt-3 text-neutral-700 max-w-3xl">Lord Ganesha — remover of obstacles and patron of wisdom — is celebrated across India. This scrolling timeline highlights key stories and how the Matoli tradition connects to nature and gratitude.</p> <div class="mt-10 relative"> <div class="absolute left-6 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-turmeric-400 to-saffron-500 rounded-full"></div> <div class="space-y-10"> <!-- Item --> <div class="relative grid md:grid-cols-2 gap-6 items-start" data-tl> <div class="order-2 md:order-1 md:text-right pr-6"> <div class="inline-block rounded-full bg-turmeric-100 text-turmeric-900 px-3 py-1 text-xs">Mythic Origin</div> <h3 class="text-2xl font-semibold mt-2">Birth of Ganesha</h3> <p class="text-neutral-700 mt-2">According to popular lore, Parvati shaped Ganesha from sandal paste and breathed life into him. Shiva later recognized him as his son and blessed him as the foremost deity invoked at beginnings.</p> </div> <div class="order-1 md:order-2 pl-6"><img class="rounded-2xl shadow-soft" src="attached_assets/A stunning Ganesha idol, exquisitely adorned with…_1755666424972.jfif" alt="Ganesh idol"/></div> </div> <!-- Item --> <div class="relative grid md:grid-cols-2 gap-6 items-start" data-tl> <div class="pl-6"> <div class="inline-block rounded-full bg-saffron-100 text-saffron-900 px-3 py-1 text-xs">Symbolism</div> <h3 class="text-2xl font-semibold mt-2">Why Fruits & Greens?</h3> <p class="text-neutral-700 mt-2">Fruits symbolize the results of effort (karma phala). Hanging them in the Matoli is gratitude to nature's abundance and a wish for prosperity in the year to come.</p> </div> <div class="md:text-right pr-6"><img class="rounded-2xl shadow-soft" src="attached_assets/images_1755666424971.jfif" alt="Matoli canopy"/></div> </div> <!-- Item --> <div class="relative grid md:grid-cols-2 gap-6 items-start" data-tl> <div class="order-2 md:order-1 md:text-right pr-6"> <div class="inline-block rounded-full bg-turmeric-100 text-turmeric-900 px-3 py-1 text-xs">Cultural Revival</div> <h3 class="text-2xl font-semibold mt-2">Public Celebrations</h3> <p class="text-neutral-700 mt-2">The festival gained a public form during the late 19th century, encouraging community unity and cultural expression. In Goa, Matoli adds a distinct local ecological flavor.</p> </div> <div class="order-1 md:order-2 pl-6"><img class="rounded-2xl shadow-soft w-full h-64 object-cover" src="attached_assets/Ganesh-Utsav_1755666424973.webp" alt="Community celebration"/></div> </div> </div> </div> </div> </section>  <!-- VIDEO --> <section id="video" class="py-20 md:py-28"> <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center"> <div> <h2 class="font-display text-3xl md:text-5xl">Watch the Matoli in Action</h2> <p class="mt-3 text-neutral-700">See how families craft the Matoli — the sourcing, the tying, and the final beautiful canopy around Lord Ganesh.</p> <ul class="mt-4 space-y-2 text-neutral-700"> <li>🎬 Real footage</li> <li>📝 Step-by-step view</li> <li>🔊 Devotional ambience</li> </ul> </div> <div class="rounded-3xl overflow-hidden shadow-soft"> <div class="relative pt-[56.25%] bg-black/10"> <iframe class="absolute inset-0 w-full h-full" src="https://www.youtube.com/embed/VidIcqeU9-w" title="Matoli Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> </div> </div> </div> </section>
+  <!-- FOOTER --> <footer class="py-10 border-t border-neutral-300/60"> <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4"> <div class="text-sm">© <span id="year"></span> Smart Matoli — Tradition with a Modern Touch</div> <div class="text-xs text-neutral-600">Tailwind • GSAP • GLightbox • Lenis</div> </div> </footer> <script> 
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Matoli Quiz</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+      </head>
+      <body class="bg-gradient-to-br from-yellow-50 to-orange-100 font-sans">
+
+        <!-- QUIZ BOX -->
+        <section id="quiz" class="min-h-screen flex items-center justify-center p-6">
+          <div class="max-w-2xl w-full bg-white/80 backdrop-blur-lg rounded-3xl border border-white/40 p-8 shadow-xl">
+            <h1 class="text-3xl font-bold text-center mb-2">🎯 Matoli Quiz</h1>
+            <p class="text-center text-neutral-600 mb-6">Test your knowledge about the sacred Matoli tradition!</p>
+
+            <!-- Mode Toggle -->
+            <div class="flex justify-center gap-4 mb-6">
+              <button id="shortMode" class="rounded-xl bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 shadow">
+                Short Quiz (5 Qs)
+              </button>
+              <button id="fullMode" class="rounded-xl bg-neutral-300 hover:bg-neutral-400 text-black px-4 py-2 shadow">
+                Full Quiz (10 Qs)
+              </button>
+            </div>
+
+            <!-- Start Btn -->
+            <div class="text-center mb-6">
+              <button id="quizStart" class="rounded-xl bg-yellow-500 hover:bg-yellow-600 text-white px-6 py-3 shadow-lg">
+                🚀 Start Quiz
+              </button>
+            </div>
+
+            <!-- Quiz Area -->
+            <div id="quizBox" class="hidden">
+
+              <!-- Progress -->
+              <div class="w-full bg-neutral-200 rounded-full h-3 mb-4">
+                <div id="progressBar" class="bg-yellow-500 h-3 rounded-full transition-all duration-300 ease-out" style="width:0%"></div>
+              </div>
+
+              <!-- Question + score -->
+              <div class="flex justify-between mb-2">
+                <div id="quizQ" class="text-lg font-semibold"></div>
+                <div id="scoreTracker" class="text-sm text-neutral-600"></div>
+              </div>
+
+              <!-- Options -->
+              <div id="quizOpts" class="mt-4 grid sm:grid-cols-2 gap-3"></div>
+
+              <!-- Message -->
+              <div class="mt-4 text-sm font-bold" id="quizMsg"></div>
+
+              <!-- Restart -->
+              <div class="mt-6 text-center hidden" id="restartBox">
+                <button id="restartBtn" class="rounded-xl bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 shadow">
+                  🔄 Restart Quiz
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <script>
+          // Question sets
+          const shortQs = [
+            { q: 'Matoli is mainly decorated during which festival?', opts: ['Ganesh Chaturthi', 'Diwali', 'Holi', 'Navratri'], a: 0 },
+            { q: 'Which fruit is believed to ward off negativity?', opts: ['Banana', 'Lemon', 'Pomegranate', 'Mango'], a: 1 },
+            { q: 'What does Coconut symbolize in Matoli?', opts: ['Purity & auspiciousness', 'Sweetness', 'Strength', 'Fun'], a: 0 },
+            { q: 'Which fruit is linked to Goddess Lakshmi?', opts: ['Mango', 'Banana', 'Coconut', 'Pomegranate'], a: 3 },
+            { q: 'Why are lemons hung in Matoli?', opts: ['For color', 'Wards off evil eye', 'Decoration', 'Offer to guests'], a: 1 }
+          ];
+
+          const fullQs = [
+            { q: 'Why are fruits hung in a Matoli?', opts: ['Decoration', 'Symbol of prosperity', 'Fun activity', 'Food storage'], a: 1 },
+            { q: 'Which fruit is linked to Goddess Lakshmi?', opts: ['Banana', 'Mango', 'Coconut', 'Pomegranate'], a: 3 },
+            { q: 'What does Coconut symbolize in Matoli?', opts: ['Purity & auspiciousness', 'Strength', 'Sweetness', 'Fertility'], a: 0 },
+            { q: 'Which fruit keeps away evil eye?', opts: ['Banana', 'Lemon', 'Orange', 'Apple'], a: 1 },
+            { q: 'Bananas in Matoli represent?', opts: ['Fertility & prosperity', 'Purity', 'Sweetness', 'Strength'], a: 0 },
+            { q: 'What does Mango symbolize?', opts: ['Joy & love', 'Victory', 'Health', 'Strength'], a: 0 },
+            { q: 'Why is sugarcane used in Matoli?', opts: ['Symbol of sweetness & growth', 'Decoration only', 'Hardness', 'To feed animals'], a: 0 },
+            { q: 'Which item is offered as a mark of hospitality?', opts: ['Pomegranate', 'Coconut water', 'Banana', 'Mango'], a: 2 },
+            { q: 'Which element of Matoli represents abundance?', opts: ['Multiple fruits & grains', 'Lights', 'Cloth', 'Flowers'], a: 0 },
+            { q: 'What does Pomegranate symbolize?', opts: ['Health & prosperity', 'Purity', 'Strength', 'Fun'], a: 0 }
+          ];
+
+          // DOM elements
+          const startBtn = document.getElementById('quizStart');
+          const qBox = document.getElementById('quizBox');
+          const qQ = document.getElementById('quizQ');
+          const qOpts = document.getElementById('quizOpts');
+          const qMsg = document.getElementById('quizMsg');
+          const shortBtn = document.getElementById('shortMode');
+          const fullBtn = document.getElementById('fullMode');
+          const restartBox = document.getElementById('restartBox');
+          const restartBtn = document.getElementById('restartBtn');
+          const progressBar = document.getElementById('progressBar');
+          const scoreTracker = document.getElementById('scoreTracker');
+
+          let quizData = shortQs; // default
+          let qIdx = 0, score = 0;
+
+          // Mode toggle
+          shortBtn.addEventListener('click', ()=>{
+            quizData = shortQs;
+            toggleMode(shortBtn, fullBtn);
+          });
+
+          fullBtn.addEventListener('click', ()=>{
+            quizData = fullQs;
+            toggleMode(fullBtn, shortBtn);
+          });
+
+          function toggleMode(active, inactive){
+            active.classList.add("bg-yellow-500","text-white");
+            active.classList.remove("bg-neutral-300","text-black");
+            inactive.classList.add("bg-neutral-300","text-black");
+            inactive.classList.remove("bg-yellow-500","text-white");
+          }
+
+          // Paint question
+          function paintQ(){
+            const item = quizData[qIdx];
+            qQ.textContent = `Q${qIdx+1}. ${item.q}`;
+            qOpts.innerHTML = '';
+            item.opts.forEach((opt,i)=>{
+              const btn=document.createElement('button');
+              btn.className='w-full text-left rounded-xl border border-neutral-300 px-4 py-3 hover:bg-yellow-50 active:scale-95 transition';
+              btn.textContent=opt;
+              btn.onclick=()=>handleAns(i,item.a);
+              qOpts.appendChild(btn);
+            });
+
+            // Update progress + score
+            progressBar.style.width = `${((qIdx)/quizData.length)*100}%`;
+            scoreTracker.textContent = `Score: ${score} / ${quizData.length}`;
+          }
+
+          // Handle answer
+          function handleAns(i,correct){
+            if(i===correct){ score++; qMsg.textContent='✅ Correct!'; }
+            else{ qMsg.textContent='❌ Wrong!'; }
+            setTimeout(()=>{
+              qIdx++;
+              if(qIdx < quizData.length){
+                qMsg.textContent='';
+                paintQ();
+              } else {
+                qQ.textContent = `🎉 Quiz Over! Final Score: ${score}/${quizData.length}`;
+                qOpts.innerHTML='';
+                qMsg.textContent = score===quizData.length ? '🏆 Perfect score!' : 'Good try! Keep learning ✨';
+                progressBar.style.width = '100%';
+                scoreTracker.textContent = `Final: ${score}/${quizData.length}`;
+                restartBox.classList.remove("hidden");
+              }
+            },600);
+          }
+
+          // Start quiz
+          startBtn.addEventListener('click',()=>{
+            qIdx=0; score=0;
+            qBox.classList.remove('hidden');
+            restartBox.classList.add("hidden");
+            qMsg.textContent = '';
+            paintQ();
+            qBox.scrollIntoView({behavior:'smooth'});
+          });
+
+          // Restart quiz
+          restartBtn.addEventListener('click',()=>{
+            qIdx=0; score=0;
+            restartBox.classList.add("hidden");
+            qMsg.textContent='';
+            paintQ();
+          });
+        </script>
+      </body>
+      </html>
+
